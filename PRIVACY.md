@@ -1,8 +1,14 @@
 # Privacy
 
-Local checks use the sender identity and configured reference data. Complete
-email contents are not required for the foundation and must not be transmitted
-unnecessarily.
+Local checks use the sender identity and configured reference data. Email
+ingestion reads a local `.eml` file or, only when explicitly requested, a
+user-supplied HTTP(S) URL. The parser retains structured headers and source
+metadata for analysis, not the message body or attachments.
+
+Remote downloads disclose the requested URL and network metadata to the
+target server. Deployments should make this external communication visible to
+users, enforce network policy, and avoid sending sensitive messages to
+untrusted hosts.
 
 External providers are opt-in. When enabled, deployments must disclose what
 domains or queries are sent, which provider receives them, and the provider's
