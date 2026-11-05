@@ -17,6 +17,8 @@ message safety.
 
 - Analyze sender addresses and domains before considering message content.
 - Never execute attachments, downloaded scripts, or URLs.
+- Treat downloaded email files as untrusted input; enforce size and timeout
+  limits and parse headers without executing message content.
 - Never send email, modify DNS, or access private systems.
 - Keep secrets out of source control and logs.
 - Use provider timeouts, rate limits, and explicit opt-in configuration.

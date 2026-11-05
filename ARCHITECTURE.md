@@ -4,6 +4,7 @@ Teiritsu is a modular, deterministic investigation pipeline:
 
 ```text
 sender input
+  -> email file acquisition and header parsing
   -> parsing and normalization
   -> local identity and domain analysis
   -> optional provider adapters
@@ -15,7 +16,10 @@ sender input
 ## Responsibilities
 
 - **Interface:** CLI and future API or client integrations.
-- **Parsing:** extract sender identity and preserve original input.
+- **Acquisition:** explicitly read local `.eml` files or bounded HTTP(S)
+  responses; reject unsupported schemes and oversized files.
+- **Parsing:** extract headers, sender identity, and preserve source metadata
+  without returning message bodies or executing attachments.
 - **Identity:** Unicode normalization, hexadecimal inspection, similarity, and
   homoglyph detection.
 - **Domain:** registrable-domain, DNS, MX, subdomain, and typosquatting checks.
@@ -36,3 +40,7 @@ least data necessary and must not upload complete message contents by default.
 
 The runtime contains no AI or machine-learning functionality. Deterministic
 rules are the application decision mechanism.
+
+Email downloads are opt-in and bounded by timeout and size limits. Downloaded
+content is treated as untrusted evidence: Teiritsu does not execute
+attachments, HTML, scripts, or URLs found in a message.
