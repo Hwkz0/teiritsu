@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "teiritsu"
+version = "0.1.0"
+description = "Deterministic email identity investigation toolkit."
+readme = "README.md"
+requires-python = ">=3.11"
+license = {file = "LICENSE"}
+
+[project.scripts]
+teiritsu = "teiritsu.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
