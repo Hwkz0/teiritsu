@@ -15,7 +15,9 @@ sender input
 
 ## Responsibilities
 
-- **Interface:** CLI and future API or client integrations.
+- **Interface:** CLI, the `frontend/` React dashboard, and future API or client
+  integrations. The dashboard currently consumes deterministic local fixtures
+  and is intentionally isolated from message acquisition and analysis logic.
 - **Acquisition:** explicitly read local `.eml` files or bounded HTTP(S)
   responses; reject unsupported schemes and oversized files.
 - **Parsing:** extract headers, sender identity, and preserve source metadata
