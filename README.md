@@ -59,9 +59,10 @@ URLs are never executed by the ingestion layer.
 
 ## Current status
 
-This branch establishes the project foundation and documentation contracts.
-The executable analysis modules and user interfaces are planned as incremental,
-independently testable additions.
+This branch establishes the project foundation, deterministic analysis modules,
+and a first independently testable dashboard interface. The frontend is a
+presentation surface backed by representative local telemetry until the future
+HTTP/API boundary is connected.
 
 Planned development stages:
 
@@ -82,6 +83,10 @@ Planned development stages:
 - [Privacy](PRIVACY.md) — data minimization and external communication
 - [Contributing](CONTRIBUTING.md) — development and review workflow
 - [Project guidance](AGENTS.md) — project requirements and non-AI policy
+- [SecOps dashboard](frontend/README.md) — frontend setup, commands, and structure
+- [Frontend architecture](docs/architecture/frontend-dashboard.md) — dashboard boundaries and composition
+- [Frontend design system](docs/design-system/frontend-dashboard.md) — tokens and responsive behavior
+- [Frontend testing](docs/testing/frontend-dashboard.md) — quality gates and coverage
 
 ## Limitations
 
@@ -101,6 +106,14 @@ Before contributing, read [AGENTS.md](AGENTS.md) and
 [CONTRIBUTING.md](CONTRIBUTING.md). Changes should remain small,
 deterministic, typed, testable, and documented. Runtime AI, machine-learning,
 and generative-service dependencies are out of scope.
+
+The dashboard can be run independently:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
 ## License
 

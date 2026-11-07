@@ -1,0 +1,158 @@
+import type { DashboardAction, Metric, NavigationGroup, StreamEvent } from "./types";
+
+export const streamEvents: readonly StreamEvent[] = [
+  {
+    timestamp: "14:02:18.914",
+    sender: "ceo-direct@acme-corp.co",
+    source: "IP: 194.26.29.11 [UA-KYIV-VHOST]",
+    target: "cfo@company.internal",
+    department: "FINANCE // VIP TIER-1",
+    subject: "URGENT: Domestic Wire Instruction Revision [Acquisition]",
+    detail: "Display name spoof match (CEO Identity Vector)",
+    classification: "BEC / IMPERSONATION",
+    verdict: "INSTANT BLOCKED",
+    risk: 98,
+    clean: false,
+  },
+  {
+    timestamp: "14:02:14.302",
+    sender: "billing@cloud-support-sys.net",
+    source: "IP: 45.154.255.82 [RO-BUCHAREST]",
+    target: "infra-billing@company.internal",
+    department: "DEVOPS // SEC-OPS",
+    subject: "INVOICE_OCT_389201.pdf.vbs (Encrypted Archive)",
+    detail: "Embedded AutoOpen macro invoking PowerShell base64",
+    classification: "RANSOMWARE CARRIER",
+    verdict: "QUARANTINED",
+    risk: 94,
+    clean: false,
+  },
+  {
+    timestamp: "14:01:58.120",
+    sender: "hr-internal@microsoft-verify365.info",
+    source: "IP: 185.220.101.4 [TOR EXIT RELAY]",
+    target: "elena.rostova@company.internal",
+    department: "HR & TALENT // EMPLOYEE",
+    subject: "Updated Q4 Open Enrollment Handbook.onepkg",
+    detail: "Multi-layer redirect chain > credential harvester portal",
+    classification: "CREDENTIAL HARVEST",
+    verdict: "STRIP & DELIVER",
+    risk: 84,
+    clean: false,
+  },
+  {
+    timestamp: "14:01:42.508",
+    sender: "authenticator-notice@msft-auth-token.xyz",
+    source: "IP: 103.111.45.12 [VN-HANOI-HOST]",
+    target: "dev-all@company.internal",
+    department: "ENGINEERING // DISTRIBUTION",
+    subject: "MFA Token Expiration — Scan to Authenticate",
+    detail: "High entropy inline SVG QR-code payload OCR triggered",
+    classification: "QR QUISHING",
+    verdict: "INSTANT BLOCKED",
+    risk: 96,
+    clean: false,
+  },
+  {
+    timestamp: "14:01:29.041",
+    sender: "notifications@github.com",
+    source: "IP: 140.82.112.4 [DKIM/SPF: PASS]",
+    target: "sre-lead@company.internal",
+    department: "INFRASTRUCTURE // PROD",
+    subject: "[GitHub] Security Advisory: Dependency bump on libssh2",
+    detail: "Verified cryptographic signature from verified identity",
+    classification: "CLEAN / AUTHENTIC",
+    verdict: "DELIVERED",
+    risk: 2,
+    clean: true,
+  },
+];
+
+export const navigationGroups: readonly NavigationGroup[] = [
+  {
+    label: "CORE VECTOR",
+    items: [
+      { icon: "outgoing_mail", label: "Email Gateway Scanner" },
+      { icon: "mark_email_unread", label: "Phishing Quarantines", badge: "42" },
+      { icon: "policy", label: "DMARC/SPF/DKIM Forensics" },
+    ],
+  },
+  {
+    label: "EXPANDED SURFACE",
+    items: [
+      { icon: "cloud_sync", label: "Cloud Workload Guard" },
+      { icon: "computer", label: "Endpoint Detection & Response" },
+      { icon: "fingerprint", label: "Identity & Access Vector" },
+      { icon: "hub", label: "Zero-Trust Telemetry" },
+    ],
+  },
+  {
+    label: "SECOPS MANAGEMENT",
+    items: [
+      { icon: "biotech", label: "Threat Hunting & Sandbox" },
+      { icon: "rule", label: "Incident Playbooks" },
+      { icon: "receipt_long", label: "Audit Logs" },
+      { icon: "verified_user", label: "Compliance" },
+    ],
+  },
+];
+
+export const metrics: readonly Metric[] = [
+  {
+    label: "Inbound flow",
+    value: "2.41M",
+    note: "+4.2% / 24h",
+    icon: "swap_driving_apps_wheel",
+    iconColor: "text-blue",
+    barColor: "bg-blue",
+    progress: 78,
+  },
+  {
+    label: "Intercepted",
+    value: "18,429",
+    note: "100% blocked",
+    icon: "block",
+    iconColor: "text-red",
+    barColor: "bg-red",
+    progress: 92,
+  },
+  {
+    label: "BEC / quishing",
+    value: "4,112",
+    note: "High severity",
+    icon: "phishing",
+    iconColor: "text-ink",
+    barColor: "bg-ink",
+    progress: 64,
+  },
+  {
+    label: "0-day sandbox",
+    value: "147",
+    note: "Detonated",
+    icon: "biotech",
+    iconColor: "text-yellow",
+    barColor: "bg-yellow",
+    progress: 44,
+  },
+  {
+    label: "Auth spoofed",
+    value: "8,904",
+    note: "Fail DMARC/DKIM",
+    icon: "security",
+    iconColor: "text-black/60",
+    barColor: "bg-black/60",
+    progress: 83,
+  },
+];
+
+export const quickActions: readonly DashboardAction[] = [
+  {
+    label: "Purge mailbox fleet",
+    detail: "Retroactive quarantine",
+    icon: "auto_delete",
+    className: "bg-ink text-white",
+  },
+  { label: "IOC domain sync", detail: "Push to perimeter firewalls", icon: "sync", className: "bg-white" },
+  { label: "Trigger SOAR #409", detail: "Phishing auto-triage flow", icon: "play_arrow", className: "bg-yellow" },
+  { label: "Export EML bundle", detail: "Forensic tarball (.tar.gz)", icon: "download", className: "bg-white" },
+];
