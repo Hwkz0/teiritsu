@@ -18,4 +18,13 @@ describe("SecOps dashboard", () => {
     expect(screen.getByText("SHOWING 3 OF 18,429 RECENT VERDICTS // AUTO-POLL: 1000ms")).toBeInTheDocument();
     expect(screen.getByText("ceo-direct@acme-corp.co")).toBeInTheDocument();
   });
+
+  it("searches visible evidence and toggles the incident lock", async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    await user.type(screen.getByRole("textbox", { name: "Search telemetry" }), "github");
+    expect(screen.getByText("SHOWING 1 OF 18,429 RECENT VERDICTS // AUTO-POLL: 1000ms")).toBeInTheDocument();
+    await user.click(screen.getByRole("button", { name: "Incident lock" }));
+    expect(screen.getByText(/INCIDENT LOCK ACTIVE/)).toBeInTheDocument();
+  });
 });

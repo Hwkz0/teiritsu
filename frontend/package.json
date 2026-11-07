@@ -9,6 +9,8 @@
     "lint": "eslint .",
     "typecheck": "tsc -b",
     "test": "vitest run",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -33,5 +35,7 @@
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "prettier": "^3.4.2"
+  }
 }

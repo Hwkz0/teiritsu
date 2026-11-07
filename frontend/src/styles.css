@@ -2,11 +2,39 @@
 @tailwind components;
 @tailwind utilities;
 
-:root { color: #1a1a1a; background: #f5f0e8; font-family: Inter, sans-serif; font-synthesis: none; }
-* { box-sizing: border-box; }
-html { background: #f5f0e8; }
-body { margin: 0; min-width: 320px; }
-button, a, input { font: inherit; }
-button { cursor: pointer; }
-.material-symbols-outlined { font-size: 18px; line-height: 1; vertical-align: middle; }
-main { min-height: calc(100vh - 4rem); }
+:root {
+  color: #1a1a1a;
+  background: #f5f0e8;
+  font-family: Inter, sans-serif;
+  font-synthesis: none;
+}
+* {
+  box-sizing: border-box;
+}
+html {
+  background: #f5f0e8;
+}
+body {
+  margin: 0;
+  min-width: 320px;
+}
+button,
+a,
+input {
+  font: inherit;
+}
+button {
+  cursor: pointer;
+}
+:focus-visible {
+  outline: 3px solid #0055ff;
+  outline-offset: 2px;
+}
+.material-symbols-outlined {
+  font-size: 18px;
+  line-height: 1;
+  vertical-align: middle;
+}
+main {
+  min-height: calc(100vh - 4rem);
+}

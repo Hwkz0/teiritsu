@@ -84,6 +84,9 @@ Planned development stages:
 - [Contributing](CONTRIBUTING.md) — development and review workflow
 - [Project guidance](AGENTS.md) — project requirements and non-AI policy
 - [SecOps dashboard](frontend/README.md) — frontend setup, commands, and structure
+- [Frontend architecture](docs/architecture/frontend-dashboard.md) — dashboard boundaries and composition
+- [Frontend design system](docs/design-system/frontend-dashboard.md) — tokens and responsive behavior
+- [Frontend testing](docs/testing/frontend-dashboard.md) — quality gates and coverage
 
 ## Limitations
 
