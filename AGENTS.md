@@ -1,5 +1,49 @@
 # Project Foundation: Open-Source Email Identity Verification & Threat Intelligence Platform
 
+## Guiding principles
+
+These principles guide every area and remain adaptable as implementation
+evolves:
+
+**Transparency over obscurity.** Detection rules, assumptions, and limitations
+must be inspectable.
+**Evidence over assumptions.** Every conclusion must identify its supporting
+facts and unknowns.
+**Verification over trust.** No result may imply sender legitimacy without
+adequate identity evidence.
+**Determinism over opaque automation.** Identical inputs and evidence must
+produce the same assessment.
+**Modularity over dependency.** Providers, interfaces, skills, and analyzers
+must be replaceable.
+**Privacy over unnecessary data collection.** Process locally and disclose
+every external transfer.
+**Community reuse over proprietary restriction.** Compatibility and open
+standards are preferred; a service that creates unavoidable proprietary
+lock-in is not an acceptable foundation dependency.
+
+## Information handling
+
+Repository and agent work must classify information before it is stored,
+shared, logged, or included in a report:
+
+- **Need-to-know:** disclose only the minimum information required for the
+  current authorized task.
+- **On the record:** information that may be quoted in project artifacts.
+- **Off the record:** context that guides work but must not be attributed or
+  copied into artifacts without authorization.
+- **On background:** context that may inform general understanding but must not
+  identify its source.
+- **Deep background:** context that must not be disclosed or used as an
+  attributable source.
+- **Under embargo:** information that may be used only after its release
+  condition or date.
+
+The applicable repository confidentiality, disclosure, retention, and access
+protocols take precedence over these labels. Sensitive material must remain in
+approved protected storage, never in commits, logs, prompts, or external
+provider requests. When classification is unclear, stop distribution and
+escalate to the repository maintainer.
+
 ## 1. Project Vision
 
 Teiritsu is an open-source cybersecurity application for identifying potential
@@ -25,11 +69,21 @@ external search results appear legitimate.
 
 ## AREA 1 — Main Software Application
 
-### Core application
+### Core application and integration surfaces
 
 Build a modular platform that initially supports manual sender-address
 analysis, with future compatibility for mail clients, browser extensions, and
 automated processing.
+
+The application is an integration-ready component rather than only a
+one-shot pipeline. Its stable contracts must support:
+
+- A command-line interface for local and scripted use.
+- A dashboard or other user interface for interactive investigations.
+- A plugin/extension boundary for mail clients, browser extensions, and
+  future host applications.
+- Structured library and HTTP interfaces where they preserve the same
+  permissions and evidence model.
 
 The primary workflow is:
 
@@ -77,7 +131,15 @@ Adapters must:
 - Distinguish verified information from search-result assumptions.
 - Expose unavailable providers and incomplete results explicitly.
 
-External search results are never proof of ownership or legitimacy.
+External search results are never proof of ownership or legitimacy. A result
+can be independently corroborated, contradicted, stale, manipulated, or
+unrelated to the sender. Search ranking, snippets, domain presence, public
+profiles, and a matching logo or name are discovery signals only. Adapters
+must retain the exact source URL, retrieval time, query scope, provider,
+result classification, and whether the observation was directly verified.
+The evidence layer must label search-derived facts as unverified until a
+separate deterministic check confirms them, and must lower certainty when
+sources conflict or cannot be reproduced.
 
 ### Email authentication
 
@@ -181,11 +243,13 @@ comprehensive phishing protection or a replacement for mail security.
 Use the MIT License. Distinguish original code, dependencies, external APIs,
 datasets, and their respective licenses and terms.
 
-## AREA 3 — Agent and Application Skills
+## AREA 3 — Skills, Evaluators, and Orchestrators
 
-Skills are documented, portable capabilities for AI agents and other
-applications; they are not unrestricted access to internal functionality.
-Their use does not change the application's mandatory non-AI runtime policy.
+Skills are documented, portable capabilities for development agents and other
+applications; they are modular project components, not unrestricted access to
+internal functionality. They must be relevant to a defined project area,
+justified by a concrete repeatable need, and versioned with their contracts.
+Using an AI agent to invoke a skill does not add AI to the application runtime.
 
 Required skills:
 
@@ -209,6 +273,19 @@ Agents using skills must:
 - Never execute suspicious attachments or downloaded scripts.
 - Preserve evidence provenance and disclose uncertainty.
 - Keep agent-generated conclusions distinct from deterministic results.
+
+Evaluators inspect every skill and integration for correctness, relevance,
+security boundaries, provenance, documentation, and compatibility. Evaluation
+is required both when a skill is used and during scheduled or release-bound
+reviews; a skill may be revised, deprecated, or removed when it no longer
+matches project norms or requirements.
+
+Orchestrators coordinate skills and evaluators without becoming a hidden
+decision-maker. They must pass structured inputs, preserve provenance,
+enforce permissions and timeouts, record failures, and never replace the
+deterministic risk engine. The documentation evaluator also checks that
+implementation, tests, configuration, and public behavior remain reflected in
+the relevant documentation.
 
 ## AREA 4 — Development Strategy
 
@@ -267,46 +344,5 @@ without authorization.
 
 ## AREA 7 — Engineering Workflow
 
-Before implementation, identify purpose, dependencies, security implications,
-inputs, outputs, tests, and documentation requirements. Prefer small,
-independently testable modules and avoid unnecessary dependencies.
-
-Every change must preserve compatibility, distinguish simulated data from real
-provider responses, avoid unsupported security claims, and update related
-documentation.
-
-Use small, focused commits and pull requests. Commit subjects must use:
-
-```text
-[AREA N] type: Title-Cased Summary
-```
-
-Pull request titles must use:
-
-```text
-[AREA N] Title-Cased Summary
-```
-
-Commit descriptions must explain:
-
-```text
-Why This Area
-<why the selected area is affected>
-
-Goals
-- <goal>
-- <goal>
-```
-
-Use conventional types such as `feat`, `fix`, `docs`, `test`, `chore`, and
-`cleanup`. Do not implement the entire platform in one development step.
-
-## Guiding principles
-
-**Transparency over obscurity.**
-**Evidence over assumptions.**
-**Verification over trust.**
-**Modularity over dependency.**
-**Privacy over unnecessary data collection.**
-**Explainability over opaque automation.**
-**Community-driven development over proprietary restrictions.**
+Engineering workflow, granular commit rules, documentation evaluation, and
+pull-request requirements are maintained in [CONTRIBUTING.md](CONTRIBUTING.md).

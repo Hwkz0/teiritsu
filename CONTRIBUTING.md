@@ -1,9 +1,8 @@
 # Contributing
 
-Teiritsu is built in small, reviewable increments. Each pull request should
-implement one focused capability, contract, test slice, or documentation
-change. Do not bundle unrelated providers, refactors, features, and policy
-changes.
+Teiritsu is built in small, reviewable increments. Each pull request should implement one focused capability, contract, test
+slice, or documentation change. Do not bundle unrelated providers, refactors,
+features, and policy changes.
 
 ## Before coding
 
@@ -27,15 +26,10 @@ Every pull request title must use:
 [AREA N] Title-Cased Summary
 ```
 
-Examples:
-
-```text
-[AREA 1] feat: Parse Sender Identities
-[AREA 2] Establish Project Foundation And Instructions
-```
-
 Use descriptive commit types such as `feat`, `fix`, `docs`, `test`, `chore`,
-and `cleanup`. Do not put commit types in pull request titles.
+and `cleanup`. Do not put commit types in pull request titles. Every task must
+be split into granular commits that leave a reviewable, working increment;
+avoid one large commit covering multiple areas.
 
 ## Engineering standards
 
@@ -55,11 +49,44 @@ tests, and `git diff --check` before opening a PR.
 
 ## Documentation
 
-Update documentation in the same PR when changing detection rules, risk
+Documentation is a maintained part of the application, not a release-only
+activity. Update it in the same PR when changing detection rules, risk
 calculations, provider behavior, external data transmission, privacy,
-security, public interfaces, configuration, or CLI usage. State what a
-mechanism can and cannot prove, including false-positive and false-negative
-cases.
+security, public interfaces, configuration, skills, orchestrators, or CLI
+usage. State what a mechanism can and cannot prove, including false-positive
+and false-negative cases.
+
+The documentation evaluator must check each change for:
+
+- affected documents and links;
+- agreement between implementation, tests, configuration, and claims;
+- current examples, schemas, provider terms, and security boundaries;
+- privacy, retention, authorization, and regulatory implications; and
+- stated uncertainty, limitations, and provenance.
+
+The documentation orchestrator coordinates these checks before review and
+during release preparation. It may open a follow-up documentation task, but it
+must not silently mark undocumented behavior as complete. Scheduled
+evaluations must also re-check skills and external-provider guidance against
+new standards, terms, and project decisions.
+
+## Privacy, local processing, and regulatory safeguards
+
+- Perform parsing, normalization, comparison, and risk calculation locally by
+  default.
+- Require explicit, visible opt-in before sending an address, domain, query,
+  header, or report to an external provider.
+- Document the purpose, recipient, retention, jurisdiction, and terms for each
+  transfer; do not treat public availability as consent for unrelated use.
+- Minimize, redact, encrypt, and time-limit retained personal information.
+- Provide deletion and provider-disable controls where the deployment stores
+  data.
+- Review applicable privacy and data-protection obligations for the deployment
+  context; the project must not claim legal compliance without a documented
+  assessment.
+- Never use the platform for unauthorized enumeration, profiling, or
+  surveillance. Escalate unclear lawful-basis or cross-border questions to
+  the deployment owner.
 
 ## Pull requests
 
@@ -67,6 +94,9 @@ PR descriptions must include the area, purpose, scope boundary, tests run,
 security/privacy implications, evidence model, limitations, and follow-up work.
 Keep PRs small enough to review independently and stack them only when the base
 PR is a coherent dependency.
+
+When a PR changes a skill or orchestrator, include its justification,
+permissions, evaluator coverage, and deprecation or rollback plan.
 
 ## Security reports
 

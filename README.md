@@ -19,19 +19,22 @@ responses.
 
 ## Project areas
 
-- **AREA 1 — Main Software Application:** parsing, identity comparison,
-  domain analysis, authentication, providers, evidence, risk, reporting, and
-  interfaces.
-- **AREA 2 — Documentation and Transparency:** architecture, methodology,
-  security, privacy, API, contribution guidance, limitations, and licensing.
-- **AREA 3 — Skills:** portable contracts for identity analysis, domain
-  intelligence, authentication, external intelligence, reporting, and research.
-- **AREA 4 — Development Strategy:** incremental, testable phases.
-- **AREA 5 — Non-AI Policy:** runtime independence from AI services and models.
-- **AREA 6 — Privacy and Security:** minimized data handling and authorized
-  passive investigation.
-- **AREA 7 — Engineering Workflow:** small commits, small PRs, tests, and
-  provenance.
+- **AREA 1 — Core Application:** parsing, normalization, deterministic identity
+  comparison, domain analysis, authentication, evidence, risk, and reporting.
+- **AREA 2 — Interfaces and Integrations:** CLI, dashboard, library, plugin,
+  and future client contracts over the same analysis boundary.
+- **AREA 3 — External Intelligence:** replaceable search, reputation, and DNS
+  adapters with provenance and failure reporting.
+- **AREA 4 — Documentation and Transparency:** architecture, methodology,
+  security, privacy, API, limitations, and licensing.
+- **AREA 5 — Skills, Evaluators, and Orchestrators:** modular contracts,
+  permission boundaries, and continuous documentation/skill evaluation.
+- **AREA 6 — Non-AI Architecture:** runtime independence from AI services,
+  models, credentials, and inference infrastructure.
+- **AREA 7 — Privacy, Security, and Authorization:** local processing,
+  minimized data handling, lawful deployment, and passive investigation.
+- **AREA 8 — Incremental Engineering:** granular commits, focused PRs,
+  tests, provenance, and reproducible development.
 
 ## Investigation model
 
@@ -54,8 +57,8 @@ Development is intentionally incremental:
 3. Unicode, homoglyph, IDN, and registrable-domain analysis
 4. DNS, SPF, DKIM, DMARC, and header evidence
 5. Provider-independent public intelligence adapters
-6. Evidence aggregation, deterministic risk rules, and reports
-7. Skills, hardening, security review, and community release
+6. Evidence aggregation, deterministic risk rules, and shareable reports
+7. Skills, evaluators, orchestrators, hardening, and community release
 
 ## Development
 
