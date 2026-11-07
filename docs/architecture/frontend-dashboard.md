@@ -20,9 +20,14 @@ modules described in `ARCHITECTURE.md`.
 ## Composition
 
 `DashboardPage` composes `Sidebar`, `Header`, `TelemetryBanner`, `MetricCard`,
-`StreamTable`, `AnalyticsGrid`, and `OperationsPanels`. Each component owns one
-visual responsibility and receives typed props rather than reaching into
-global state.
+`InvestigationControls`, `StreamTable`, `AnalyticsGrid`, and
+`OperationsPanels`. These sections are further decomposed into reusable
+primitives and focused feature components: navigation groups and status,
+telemetry controls, stream headers/rows/actions/footer, analytics cards and
+cluster rows, correlation items, and SOAR controls. Shared `Panel`, `Badge`,
+`SectionHeading`, and `IconButton` primitives keep repeated visual contracts
+consistent. Each component owns one visual responsibility and receives typed
+props rather than reaching into global state.
 
 The `useDashboardState` hook owns filter, search, incident-lock, and status
 state. It performs only deterministic local filtering and exposes callbacks to

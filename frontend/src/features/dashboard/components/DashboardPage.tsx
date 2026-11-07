@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AnalyticsGrid } from "./AnalyticsGrid";
 import { Header } from "./Header";
+import { InvestigationControls } from "./InvestigationControls";
 import { MetricCard } from "./MetricCard";
 import { OperationsPanels } from "./OperationsPanels";
 import { Sidebar } from "./Sidebar";
@@ -35,37 +36,10 @@ export function DashboardPage() {
                 ))}
               </div>
             </section>
-            <section className="flex flex-col gap-4 bg-ink p-5 text-white shadow-brutal lg:flex-row lg:items-center lg:justify-between">
-              <div>
-                <h2 className="font-headline text-sm font-bold uppercase tracking-wider">
-                  Live investigation controls
-                </h2>
-                <p className="mt-1 font-mono text-xs text-white/70">
-                  Use deterministic local controls to narrow evidence without sending message content to external
-                  services.
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                <button
-                  className={`border-2 border-white px-3 py-2 font-headline text-xs font-bold uppercase ${dashboard.filter === "all" ? "bg-yellow text-ink" : "bg-transparent"}`}
-                  onClick={() => dashboard.setFilter("all")}
-                  type="button"
-                >
-                  All classifications
-                </button>
-                <button
-                  className={`border-2 border-white px-3 py-2 font-headline text-xs font-bold uppercase ${dashboard.filter === "critical" ? "bg-red text-white" : "bg-transparent"}`}
-                  data-testid="critical-filter"
-                  onClick={() => dashboard.setFilter("critical")}
-                  type="button"
-                >
-                  Critical only (90+)
-                </button>
-              </div>
-            </section>
+            <InvestigationControls filter={dashboard.filter} onFilterChange={dashboard.setFilter} />
             <StreamTable events={dashboard.visibleEvents} onAction={dashboard.notify} />
             <AnalyticsGrid />
-            <OperationsPanels onAction={dashboard.notify} />
+            <OperationsPanels onAction={dashboard.notify} status={dashboard.status} />
             <p className="font-mono text-[10px] uppercase tracking-wider text-black/50">
               Teiritsu // Deterministic evidence surface // {dashboard.visibleEvents.length} visible stream records{" "}
               {dashboard.locked ? "// INCIDENT LOCK ACTIVE" : ""} {dashboard.status}
