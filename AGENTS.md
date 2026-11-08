@@ -69,7 +69,7 @@ external search results appear legitimate.
 
 ## AREA 1 — Main Software Application
 
-### Core application and integration surfaces
+### 1.1 Core application and integration surfaces
 
 Build a modular platform that initially supports manual sender-address
 analysis, with future compatibility for mail clients, browser extensions, and
@@ -95,7 +95,7 @@ The primary workflow is:
 6. Generate an explainable deterministic risk assessment.
 7. Return findings, confidence indicators, and supporting evidence.
 
-### Identity analysis
+### 1.2 Identity analysis
 
 Implement complementary techniques:
 
@@ -114,7 +114,7 @@ Implement complementary techniques:
 Hexadecimal representation is an inspection and comparison mechanism, not
 cryptographic authentication.
 
-### External intelligence
+### 1.3 External intelligence
 
 Use provider-independent adapters with standardized outputs. Potential
 providers include SearXNG, VirusTotal, Google Safe Browsing, DNS services,
@@ -141,7 +141,7 @@ The evidence layer must label search-derived facts as unverified until a
 separate deterministic check confirms them, and must lower certainty when
 sources conflict or cannot be reproduced.
 
-### Email authentication
+### 1.4 Email authentication
 
 Implement a separate technical verification layer for:
 
@@ -155,7 +155,7 @@ Domain authentication must remain distinct from individual sender
 authorization. A passing SPF result does not establish that a person may
 represent an organization.
 
-### Risk assessment
+### 1.5 Risk assessment
 
 Use explicit, documented, deterministic rules for:
 
@@ -179,7 +179,7 @@ applicable, and explanation. Risk classifications are:
 The absence of indicators is not proof of legitimacy. Runtime risk decisions
 must not depend on opaque AI classification.
 
-### Application architecture
+### 1.6 Application architecture
 
 Keep these responsibilities separate:
 
@@ -198,7 +198,7 @@ Keep these responsibilities separate:
 Prioritize maintainability, testability, type safety, separation of concerns,
 provider independence, secure configuration, and reproducible development.
 
-### Privacy and security
+### 1.7 Privacy and security
 
 - Do not transmit complete email contents unnecessarily.
 - Prefer sender-address and domain analysis.
@@ -219,7 +219,7 @@ Open documentation enables security review, community contribution,
 reproducible testing, weakness discovery, trust through transparency, and
 education.
 
-Required documentation:
+#### 2.1 Required documentation
 
 - `README.md`: overview, problem, objectives, features, architecture,
   installation, usage, limitations, contribution, and license.
@@ -233,6 +233,8 @@ Required documentation:
   authentication, intelligence correlation, and risk classification.
 - `API.md`: interfaces, adapters, data structures, endpoints, errors, and
   extension requirements.
+- `DOCUMENTATION.md`: evaluator, orchestrator, review cadence, and change
+  records.
 - `CONTRIBUTING.md`: development, coding, tests, pull requests, documentation,
   and security review.
 
@@ -243,49 +245,46 @@ comprehensive phishing protection or a replacement for mail security.
 Use the MIT License. Distinguish original code, dependencies, external APIs,
 datasets, and their respective licenses and terms.
 
-## AREA 3 — Skills, Evaluators, and Orchestrators
+#### 2.2 Security through transparency
 
-Skills are documented, portable capabilities for development agents and other
-applications; they are modular project components, not unrestricted access to
-internal functionality. They must be relevant to a defined project area,
-justified by a concrete repeatable need, and versioned with their contracts.
-Using an AI agent to invoke a skill does not add AI to the application runtime.
+Documentation must state what each mechanism can detect, what it cannot prove,
+and where false positives or false negatives are expected. External provider
+terms, dependency licenses, data flows, and reliability assumptions must remain
+visible as the implementation evolves.
 
-Required skills:
+#### 2.3 Open-source licensing and dependency terms
 
-1. Email Identity Analysis
-2. Domain Intelligence
-3. Email Authentication Verification
-4. External Intelligence Search
-5. Security Report Generation
-6. Security Research Assistant
+The MIT license governs original project code. Dependencies, APIs, datasets,
+and provider services retain their own licenses and terms. Open standards and
+interoperability are preferred, but this principle is not a ban on every
+external service. A service that imposes unavoidable proprietary restrictions
+or makes the project dependent on closed functionality must not be selected as
+a foundation dependency.
 
-Each `SKILL.md` must define its name, purpose, intended use, inputs, outputs,
-execution instructions, restrictions, examples, and failure scenarios.
-Skills should support structured JSON, documented APIs, and MCP-compatible
-interfaces where justified.
+## AREA 3 — Agent and Application Skills
 
-Agents using skills must:
+The skills ecosystem is maintained in a separate implementation area and pull
+request. This foundation records only the boundary: future skills must be
+documented, portable, permission-limited, evidence-preserving, and compatible
+with the application's mandatory non-AI runtime policy. Skill implementation
+must not be introduced as part of this documentation foundation.
 
-- Operate passively by default.
-- Use authorized public sources and respect provider terms and rate limits.
-- Avoid private systems, automatic email, DNS changes, and account changes.
-- Never execute suspicious attachments or downloaded scripts.
-- Preserve evidence provenance and disclose uncertainty.
-- Keep agent-generated conclusions distinct from deterministic results.
+### 3.1 Skill lifecycle governance
 
-Evaluators inspect every skill and integration for correctness, relevance,
-security boundaries, provenance, documentation, and compatibility. Evaluation
-is required both when a skill is used and during scheduled or release-bound
-reviews; a skill may be revised, deprecated, or removed when it no longer
-matches project norms or requirements.
+Skills are modular capabilities that agents use while working on defined
+project areas. Each skill must be relevant, justified by a repeatable need,
+versioned, and evaluated for inputs, outputs, permissions, provenance,
+security, documentation, and failure behavior. Evaluators run both when a
+skill is used and during periodic or release-bound reviews. Periodic reviews
+check whether a skill remains relevant, compatible with new norms and project
+requirements, and safe to retain; obsolete skills are revised, deprecated, or
+removed.
 
-Orchestrators coordinate skills and evaluators without becoming a hidden
-decision-maker. They must pass structured inputs, preserve provenance,
-enforce permissions and timeouts, record failures, and never replace the
-deterministic risk engine. The documentation evaluator also checks that
-implementation, tests, configuration, and public behavior remain reflected in
-the relevant documentation.
+Orchestrators may coordinate skills and evaluators, but cannot become a hidden
+decision-maker or replace deterministic application logic. They must pass
+structured inputs, enforce permissions and timeouts, preserve provenance, and
+record failures. Skill contracts and implementations are delivered in the
+separate skills pull request.
 
 ## AREA 4 — Development Strategy
 
@@ -344,5 +343,16 @@ without authorization.
 
 ## AREA 7 — Engineering Workflow
 
-Engineering workflow, granular commit rules, documentation evaluation, and
-pull-request requirements are maintained in [CONTRIBUTING.md](CONTRIBUTING.md).
+Before implementation, identify purpose, dependencies, security implications,
+inputs, outputs, tests, and documentation requirements. Prefer small,
+independently testable modules and avoid unnecessary dependencies.
+
+Every change must preserve compatibility, distinguish simulated data from real
+provider responses, avoid unsupported security claims, and update related
+documentation.
+
+The full engineering workflow, granular commit rules, documentation
+evaluation, and pull-request requirements are maintained in
+[CONTRIBUTING.md](CONTRIBUTING.md). Before implementation, contributors must
+identify purpose, dependencies, security implications, inputs, outputs, tests,
+and documentation requirements.

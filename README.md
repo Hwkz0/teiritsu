@@ -19,22 +19,48 @@ responses.
 
 ## Project areas
 
-- **AREA 1 — Core Application:** parsing, normalization, deterministic identity
-  comparison, domain analysis, authentication, evidence, risk, and reporting.
-- **AREA 2 — Interfaces and Integrations:** CLI, dashboard, library, plugin,
-  and future client contracts over the same analysis boundary.
-- **AREA 3 — External Intelligence:** replaceable search, reputation, and DNS
-  adapters with provenance and failure reporting.
-- **AREA 4 — Documentation and Transparency:** architecture, methodology,
-  security, privacy, API, limitations, and licensing.
-- **AREA 5 — Skills, Evaluators, and Orchestrators:** modular contracts,
-  permission boundaries, and continuous documentation/skill evaluation.
-- **AREA 6 — Non-AI Architecture:** runtime independence from AI services,
-  models, credentials, and inference infrastructure.
-- **AREA 7 — Privacy, Security, and Authorization:** local processing,
-  minimized data handling, lawful deployment, and passive investigation.
-- **AREA 8 — Incremental Engineering:** granular commits, focused PRs,
-  tests, provenance, and reproducible development.
+### AREA 1 — Main Software Application
+
+1.1 Core application and interfaces
+1.2 Identity analysis and normalization
+1.3 External intelligence integration
+1.4 Email authentication analysis
+1.5 Explainable risk assessment
+1.6 Modular application architecture
+1.7 Privacy and security controls
+
+### AREA 2 — Documentation, Transparency, and Security Philosophy
+
+2.1 Security through transparency
+2.2 Required documentation contracts
+2.3 Limitations, evidence boundaries, and provider assumptions
+2.4 Open-source licensing and dependency terms
+
+### AREA 3 — Agent and Application Skills
+
+3.1 Skill objective and capability boundaries
+3.2 Portable contracts and permission restrictions
+3.3 Skill implementation is maintained in a separate pull request
+
+### AREA 4 — Development Strategy
+
+Incremental phases from foundation, through identity verification, external
+intelligence, authentication and risk, skills, and hardening/community release.
+
+### AREA 5 — Mandatory Non-AI Architecture
+
+Deterministic runtime behavior, prohibited AI technologies, permitted
+conventional techniques, enforcement, and dependency review.
+
+### AREA 6 — Privacy, Security, and Authorization
+
+Local processing, data minimization, explicit provider access, authorization
+boundaries, retention, and safe handling.
+
+### AREA 7 — Engineering Workflow
+
+Small independently testable changes, granular commits, focused pull requests,
+testing, provenance, documentation maintenance, and review requirements.
 
 ## Investigation model
 
@@ -58,13 +84,13 @@ Development is intentionally incremental:
 4. DNS, SPF, DKIM, DMARC, and header evidence
 5. Provider-independent public intelligence adapters
 6. Evidence aggregation, deterministic risk rules, and shareable reports
-7. Skills, evaluators, orchestrators, hardening, and community release
+7. Skills, hardening, security review, and community release
 
 ## Development
 
 Read [AGENTS.md](AGENTS.md) before contributing. See
-[CONTRIBUTING.md](CONTRIBUTING.md) for the small-commit and pull-request
-workflow. Skills are documented under [`skills/`](skills/).
+[CONTRIBUTING.md](CONTRIBUTING.md) for the granular commit and pull-request
+workflow.
 
 ## Documentation
 
@@ -73,6 +99,7 @@ workflow. Skills are documented under [`skills/`](skills/).
 - [Security](SECURITY.md)
 - [Privacy](PRIVACY.md)
 - [API](API.md)
+- [Documentation Governance](DOCUMENTATION.md)
 - [Contributing](CONTRIBUTING.md)
 
 ## Limitations

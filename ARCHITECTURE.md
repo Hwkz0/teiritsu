@@ -4,6 +4,16 @@ Teiritsu is a modular, deterministic investigation framework. The analysis
 pipeline is one execution path inside a component that can be embedded as a
 local library, CLI, dashboard service, or host-application plugin:
 
+## Core design principles
+
+1. **Deterministic analysis first:** parsing, normalization, comparison,
+   evidence construction, and risk classification use explicit algorithms and
+   produce reproducible results.
+2. **Evidence before conclusions:** every finding identifies its source,
+   reliability, timestamp, limitations, and unresolved uncertainty.
+3. **Privacy by default:** local processing is preferred; external providers
+   are opt-in and receive only the minimum disclosed data.
+
 ```text
 sender input
   -> parsing and normalization

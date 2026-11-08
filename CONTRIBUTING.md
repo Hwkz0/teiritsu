@@ -1,16 +1,23 @@
 # Contributing
 
-Teiritsu is built in small, reviewable increments. Each pull request should implement one focused capability, contract, test
-slice, or documentation change. Do not bundle unrelated providers, refactors,
-features, and policy changes.
+Teiritsu is built in small, reviewable increments. Each pull request should
+implement one focused capability, contract, test slice, or documentation
+change. Do not bundle unrelated providers, refactors, features, and policy
+changes.
 
 ## Before coding
 
 1. Read [AGENTS.md](AGENTS.md) and identify the primary `AREA`.
-2. Read the relevant architecture and `skills/*/SKILL.md` contract.
+2. Read the relevant architecture and documentation contracts.
 3. Define purpose, dependencies, security implications, inputs, outputs,
    failure behavior, and tests.
 4. Choose the smallest independently reviewable slice.
+
+Skills are modular application capabilities that agents use when working on
+defined project areas. A skill must have a justified purpose, explicit inputs
+and outputs, permission boundaries, provenance requirements, and failure
+behavior. Skill implementation is maintained separately from this foundation
+PR, but all future skill work must follow these contribution rules.
 
 ## Naming
 
@@ -67,8 +74,9 @@ The documentation evaluator must check each change for:
 The documentation orchestrator coordinates these checks before review and
 during release preparation. It may open a follow-up documentation task, but it
 must not silently mark undocumented behavior as complete. Scheduled
-evaluations must also re-check skills and external-provider guidance against
-new standards, terms, and project decisions.
+evaluations must also re-check documentation, skills, and external-provider
+guidance against new standards, terms, project decisions, and the current
+project architecture.
 
 ## Privacy, local processing, and regulatory safeguards
 
@@ -95,8 +103,9 @@ security/privacy implications, evidence model, limitations, and follow-up work.
 Keep PRs small enough to review independently and stack them only when the base
 PR is a coherent dependency.
 
-When a PR changes a skill or orchestrator, include its justification,
-permissions, evaluator coverage, and deprecation or rollback plan.
+When a future PR changes a skill or orchestrator, include its justification,
+permissions, evaluator coverage, and deprecation or rollback plan. Skill
+implementation is outside this foundation PR.
 
 ## Security reports
 
